@@ -11,12 +11,16 @@ public class RentCar implements Samochody {
     }
 
     @Override
-    public int liczZestawienie(Collection<Samochod> samochod) {
+    public int liczZestawienie(int odleglosc) {
+        int maxKoszt = 0;
         int koszt = 0;
-        for (Samochod s : samochod){
-            koszt += s.liczKoszt();
+        for (Samochod s : cars){
+            koszt = s.liczKoszt(odleglosc);
+            if (koszt > maxKoszt){
+                maxKoszt = koszt;
+            }
         }
-        return samochod.size();
+        return maxKoszt;
     }
 
     @Override
